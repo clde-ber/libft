@@ -1,0 +1,22 @@
+void	*memchr(const void *s, int c, size_t n)
+{
+	int i;
+
+	i = 0;
+	while (i < n)
+	{
+		if (s[i] == (unsigned char)c)
+			return (s[i]);
+		else
+			return (0);
+	}
+}
+
+int	main(void)
+{
+	char *s = "string";
+	int c = 5;
+	size_t n = 3;
+	printf("%s", memchr(s, c, n));
+	return (0);
+}
