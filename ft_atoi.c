@@ -1,29 +1,30 @@
 #include <stdlib.h>
+#include <stdio.h>
 
-int     ft_atoi(const char *nptr)
+int	ft_atoi(const char *str)
 {
-    int i;
-    int j;
-    int res;
+	int i;
+	int j;
+	int res;
 
-    i = 0;
-    j = 1;
-    res = 0;
-    if (nptr[i] == '-')
-            j = -j;
-    i++;
-    while (nptr[i] >= '0' && nptr[i] <= '9')
-    {
-        res = res + (nptr[i] - '0');
-        res = res * 10;
-        i++;
-    }
-    return ((res * j) / 10);
+	i = 0;
+	j = 1;
+	res = 0;
+	if (str[i] == '-')
+		j = -j;
+	i++;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		res = res + (str[i] - '0');
+		res = res * 10;
+		i++;
+	}
+	return ((res * j) / 10);
 }
 
-int     main(int ac, char **av)
+int	main(int ac, char **av)
 {
-    printf("%d", ft_atoi(av[1]));
-    // printf("%d", atoi(av[1]));
-    return (0);
+	(void)ac;
+	printf("%d", ft_atoi(av[1]));
+	return (0);
 }
