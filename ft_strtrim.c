@@ -29,55 +29,36 @@ static size_t	is_in_set(char c, char const *set)
 char		*ft_strtrim(char const *s1, char const *set)
 {
 	size_t i;
-
-	i = 0;
 	char *str;
-
+	
+	i = 0;
 	str = malloc(sizeof(char) * (ft_strlen(s1)));
 	if ((is_in_set(s1[0], set) && is_in_set(s1[ft_strlen(s1) - 1], set)))
 		{
-			while (i < ft_strlen(s1) - 2)
-			{
+			while (i++ < ft_strlen(s1) - 2)
 				str[i] = s1[i + 1];
-				i++;
-			}
-			str[i] = '\0';
 		}
 	else if (is_in_set(s1[0], set)) 
 		{
 			i = 0;
-			while (i < ft_strlen(s1) - 1)
-			{
+			while (i++ < ft_strlen(s1) - 1)
 				str[i] = s1[i + 1];
-				i++;
-			}
-			str[i] = '\0';
 		}
 	else if (is_in_set(s1[ft_strlen(s1) - 1], set))
 		{	
 			i = 0;
-			while (i < ft_strlen(s1) - 1)
-			{
+			while (i++ < ft_strlen(s1) - 1)
 				str[i] = s1[i];
-				i++;
-			}
-			str[i] = '\0';
 		}
-	else
-		{
-			i = 0;
-			while (i < ft_strlen(s1))
-			{
-				str[i] = s1[i];
-				i++;
-			}
-		}
-		str[i] = '\0';
+	i = 0;
+	while (i++ < ft_strlen(s1))
+		str[i] = s1[i];
 	return (str);
 }
 
 int main (int ac, char **av)
 {
+	(void)ac;
 	printf("%s", ft_strtrim(av[1], av[2]));
 	return (0);
 }
