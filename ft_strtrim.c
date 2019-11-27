@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static size_t		ft_strlen(char const *s)
+static size_t	ft_strlen(char const *s)
 {
 	size_t i;
 
@@ -26,39 +26,38 @@ static size_t	is_in_set(char c, char const *set)
 	return (0);
 }
 
-char		*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t i;
-	char *str;
-	
+	size_t	i;
+	size_t	j;
+	char	*str;
+
 	i = 0;
+	j = 0;
 	str = malloc(sizeof(char) * (ft_strlen(s1)));
-	if ((is_in_set(s1[0], set) && is_in_set(s1[ft_strlen(s1) - 1], set)))
-		{
-			while (i++ < ft_strlen(s1) - 2)
-				str[i] = s1[i + 1];
-		}
-	else if (is_in_set(s1[0], set)) 
-		{
-			i = 0;
-			while (i++ < ft_strlen(s1) - 1)
-				str[i] = s1[i + 1];
-		}
-	else if (is_in_set(s1[ft_strlen(s1) - 1], set))
-		{	
-			i = 0;
-			while (i++ < ft_strlen(s1) - 1)
-				str[i] = s1[i];
-		}
-	i = 0;
-	while (i++ < ft_strlen(s1))
-		str[i] = s1[i];
+	while (i < ft_strlen(s1) && is_in_set(s1[i], set))
+		i++;
+	while (i < ft_strlen(s1) && is_in_set(s1[i], set) == 0)
+	{
+		str[j] = s1[i];
+		i++;
+		j++;
+	}
+	while (i > 0 && is_in_set(s1[i], set))
+	{
+		str[j] = '\0';
+		i++;
+		j++;
+	}
 	return (str);
 }
 
-int main (int ac, char **av)
+int	main(int ac, char **av)
 {
+	char *result;
+
 	(void)ac;
-	printf("%s", ft_strtrim(av[1], av[2]));
+	result = ft_strtrim(av[1], av[2]);
+	printf("%s", result);
 	return (0);
 }
