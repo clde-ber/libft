@@ -47,7 +47,7 @@ size_t  cut_s(size_t i, char const *s, char c)
 	return (count);
 }
 
-char *fill_split(size_t i, char *split, char const *s, char c)
+char *fill_split(size_t i, char const *s, char c)
 {
 	size_t j;
 	size_t k;
@@ -65,19 +65,18 @@ char *fill_split(size_t i, char *split, char const *s, char c)
 		j++;
 	}
 	str[k] = '\0';
+	printf("Chaine de caracteres - %s\n", str);
 	return (str);
 }
 
 char **ft_split(char const *s, char c)
 {
 	size_t i;
-	size_t i2;
 	size_t j;
 	size_t k;
 	char **split;
 
 	i = 0;
-	i2 = 0;
 	j = 0;
 	k = cut_s(i, s, c);
 	if (!(split = malloc(sizeof(char *) * (count_malloc(s, c)))))
@@ -95,10 +94,11 @@ char **ft_split(char const *s, char c)
 		}
 		i += 1;
 		printf("Valeur de i apres la boucle - %lu\n", i);
-		k = cut_s(i, s, c);
+		if (i < ft_strlen(s))
+			k = cut_s(i, s, c);
 		printf("Ft_Split - 1 - Valeur de K dans boucle =  %lu\n", k);
 		printf("Ft_Split - 2 - s =  %lu\n", k);
-	//	split[j] = fill_split(i, split[j], s, c);
+		split[j] = fill_split(i, s, c);
 		j++;
 		printf("valeur de j - %lu\n", j);
 	}
@@ -108,8 +108,6 @@ char **ft_split(char const *s, char c)
 
 int     main(void)
 {
-	//printf("Fonction Count Malloc = %li\n", count_malloc("cchellocctoiccsalut", 'c'));
-	//printf("Fonction cut_s = %li\n", cut_s(0, "cchellocctoiccsalut", 'c'));
-	ft_split("cchellocctoiccsalut", 'c');
+	printf("%s\n", ft_split("cchellocctoiccmoi", 'c')[0]);
 	return (0);
 }
