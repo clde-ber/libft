@@ -49,20 +49,20 @@ size_t  cut_s(size_t i, char const *s, char c)
 
 char *fill_split(size_t i, char const *s, char c)
 {
-	size_t j;
 	size_t k;
 	char *str;
 
-	j = 0;
 	k = 0;
-	while (s[j])
+	while (s[i] == c)
+		i++;
+	while (s[i] != c)
 	{
-		if (s[j] != c)
+		if (s[i] != c)
 		{
-			str[k] = s[j];
+			str[k] = s[i];
 			k++;
 		}
-		j++;
+		i++;
 	}
 	str[k] = '\0';
 	printf("Chaine de caracteres - %s\n", str);
@@ -74,11 +74,13 @@ char **ft_split(char const *s, char c)
 	size_t i;
 	size_t j;
 	size_t k;
+	size_t l;
 	char **split;
 
 	i = 0;
 	j = 0;
 	k = cut_s(i, s, c);
+	l = 0;
 	if (!(split = malloc(sizeof(char *) * (count_malloc(s, c)))))
 		return (0);
 	while (j < count_malloc(s, c) - 1)
@@ -96,9 +98,10 @@ char **ft_split(char const *s, char c)
 		printf("Valeur de i apres la boucle - %lu\n", i);
 		if (i < ft_strlen(s))
 			k = cut_s(i, s, c);
+		split[j] = fill_split(l, s, c);
+		l = i;
 		printf("Ft_Split - 1 - Valeur de K dans boucle =  %lu\n", k);
 		printf("Ft_Split - 2 - s =  %lu\n", k);
-		split[j] = fill_split(i, s, c);
 		j++;
 		printf("valeur de j - %lu\n", j);
 	}
