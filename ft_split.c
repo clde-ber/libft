@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-size_t	ft_strlen(char const *s)
+static size_t	ft_strlen(char const *s)
 {
 	size_t i;
 
@@ -29,7 +29,7 @@ static size_t count_malloc(char const *s, char c)
 	return (count);
 }
 
-size_t  cut_s(size_t i, char const *s, char c)
+static size_t  cut_s(size_t i, char const *s, char c)
 {
 	size_t	count;
 
@@ -46,7 +46,7 @@ size_t  cut_s(size_t i, char const *s, char c)
 	return (count);
 }
 
-char *fill_split(char *str, size_t i, char const *s, char c)
+static char *fill_split(char *str, size_t i, char const *s, char c)
 {
 	size_t k;
 
