@@ -15,7 +15,6 @@ size_t	ft_strlen(char const *s)
 static size_t count_malloc(char const *s, char c)
 {
 	size_t i;
-	size_t j;
 	size_t count;
 
 	i = 0;
@@ -26,7 +25,7 @@ static size_t count_malloc(char const *s, char c)
 			count++;
 		i++;
 	}
-	printf("Ft_Count - Nombre de mots : %zu\n", count);
+//	printf("Ft_Count - Nombre de mots : %zu\n", count);
 	return (count);
 }
 
@@ -35,7 +34,7 @@ size_t  cut_s(size_t i, char const *s, char c)
 	size_t	count;
 
 	count = 0;
-	printf("Ft_Cut_s - 1 - La chaine recu est = %s\n", s);
+//	printf("Ft_Cut_s - 1 - La chaine recu est = %s\n", s);
 	while (s[i] == c && s[i])
 		i++;
 	while (s[i] != c && s[i])
@@ -43,14 +42,13 @@ size_t  cut_s(size_t i, char const *s, char c)
 		count++;
 		i++;
 	}
-	printf("Ft_Cut_s - 2 - La taille du mot est  = %d\n", count);
+//	printf("Ft_Cut_s - 2 - La taille du mot est  = %lu\n", count);
 	return (count);
 }
 
-char *fill_split(size_t i, char const *s, char c)
+char *fill_split(char *str, size_t i, char const *s, char c)
 {
 	size_t k;
-	char *str;
 
 	k = 0;
 	while (s[i] == c)
@@ -65,7 +63,7 @@ char *fill_split(size_t i, char const *s, char c)
 		i++;
 	}
 	str[k] = '\0';
-	printf("Chaine de caracteres - %s\n", str);
+//	printf("Chaine de caracteres - %s\n", str);
 	return (str);
 }
 
@@ -89,28 +87,37 @@ char **ft_split(char const *s, char c)
 			return (0);
 		while (s[i])
 		{
-			printf("Ft_split - 3 - Boucle While\n");
+	//		printf("Ft_split - 3 - Boucle While\n");
 			if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
 				break ;
 			i++;
 		}
 		i += 1;
-		printf("Valeur de i apres la boucle - %lu\n", i);
+	//	printf("Valeur de i apres la boucle - %lu\n", i);
 		if (i < ft_strlen(s))
 			k = cut_s(i, s, c);
-		split[j] = fill_split(l, s, c);
+		split[j] = fill_split(split[j], l, s, c);
 		l = i;
-		printf("Ft_Split - 1 - Valeur de K dans boucle =  %lu\n", k);
-		printf("Ft_Split - 2 - s =  %lu\n", k);
+	//	printf("Ft_Split - 1 - Valeur de K dans boucle =  %lu\n", k);
+	//	printf("Ft_Split - 2 - s =  %lu\n", k);
 		j++;
-		printf("valeur de j - %lu\n", j);
+	//	printf("valeur de j - %lu\n", j);
 	}
-	split[j - 1] = 0;
+	split[j] = 0;
 	return (split);
 }
 
-int     main(void)
+int     main(int ac, char **av)
 {
-	printf("%s\n", ft_split("cchellocctoiccmoi", 'c')[0]);
+	(void)ac;
+	size_t i;
+
+	i = 0;
+	while (i < count_malloc(av[1], 'c'))
+	{
+		printf("Valeur de retour du main - %s\n", ft_split(av[1], 'c')[i]);
+		i++;
+	}
+	free(ft_split(av[1], 'c'));
 	return (0);
 }
