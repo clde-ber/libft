@@ -28,7 +28,6 @@ static int ft_strlen_int(int n)
 			i++;
 		}
 	}
-	printf("\n valeur de ft_strlen_int %d", (i));
 	return (i);
 }
 
@@ -46,6 +45,7 @@ char *ft_itoa(int n)
 	if (!(str = malloc(sizeof(char) * ft_strlen_int(n) + 1)))
 			return (0);
 	revstr = malloc(sizeof(str));
+	printf("valeur de ft_strlen_int(n) %d", ft_strlen_int(n));
 	if (n <= 2147483647 && n >= -2147483648)
 	{
 		if (n == -2147483648)
@@ -59,7 +59,7 @@ char *ft_itoa(int n)
 		{
 			str[i++] = n % 10 + '0';
 			n = n / 10;
-			printf("\n%c", 'a');
+	//		printf("\n%c", 'a');
 		}
 		printf("\n valeur de str au debut %s", str);
 		j = ft_strlen_int(k) - 1;
@@ -72,22 +72,17 @@ char *ft_itoa(int n)
 		printf("\n valeur de rev str %s", revstr);
 		while (i < ft_strlen_int(k))
 			revstr[i++] = str[j--];
+		if (k < 0)
+			revstr[0] = '-';
 		printf("\n valeur de rev str %s", revstr);
 		printf("\n\n\n valeur de i a la fin %d", i);
 		revstr[i] = '\0';
 	}
-//	if (n <= 2147483647 && n >= -2147483648 && k < 0)
-//	{
-//		i = 1;
-//		revstr[i - 1] = '-';
-//		while (i++ < ft_strlen_int(k))
-//			revstr[i] = revstr[i + 1];
-//	}
 	return (revstr);
 }
 
 int	main(void)
 {
-	printf("          \n%s", ft_itoa(2147483647));
+	printf("          \n%s", ft_itoa(-2147483647));
 	return (0);
 }
