@@ -75,28 +75,21 @@ char **ft_split(char const *s, char c)
 	char **split;
 
 	i = 0;
-	j = 0;
-	k = cut_s(i, s, c);
+	j = -1;
 	l = 0;
 	if (!(split = malloc(sizeof(char *) * (count_malloc(s, c)))))
 		return (0);
-	while (j < count_malloc(s, c) - 1)
+	while (++j < count_malloc(s, c) - 1)
 	{
+		k = cut_s(i, s, c);
 		if (!(split[j] = malloc(sizeof(char) * k + 1)))
 			return (0);
-		while (s[i])
-		{
+		while (s[i++])
 			if (s[i] != c && (s[i + 1] == c || s[i] == '\0'))
 				break ;
-			i++;
-		}
-		if (s[i])
-		i += 1;
-	//	printf("Valeur de i apres la boucle - %lu\n", i);
-		k = cut_s(i, s, c);
+		i = (s[i]) ? i + 1 : i;
 		split[j] = fill_split(split[j], l, s, c);
 		l = i;
-		j++;
 	}
 	split[j] = 0;
 	return (split);
