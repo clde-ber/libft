@@ -83,6 +83,6 @@ char *ft_itoa(int n)
 
 int	main(void)
 {
-	printf("          \n%s", ft_itoa(-2147483647));
+	printf("          \n%s", ft_itoa(-4569));
 	return (0);
 }
