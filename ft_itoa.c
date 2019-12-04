@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static int len_int(int n)
+static int	len_int(int n)
 {
 	int i;
 
@@ -24,42 +24,42 @@ static int len_int(int n)
 	return (i);
 }
 
-char *ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-	int i;
-	int j;
-	int k;
-	char *str;
-	char *revstr;
+	int	i;
+	int	j;
+	int	k;
+	char	*str;
+	char	*revstr;
 
 	i = 0;
 	j = 0;
 	k = n;
 	if (!(str = malloc(sizeof(char) * len_int(n) + 1)) || !(revstr = malloc(sizeof(str))))
 		return (0);
-//	printf("\n%lu -  taile de la chaine", (sizeof(char) * len_int(n) + 1));
 	n = (n < 0 && k != -2147483648) ? -n : n;
 	while (j++ < len_int(k) && k != -2147483648)
 	{
 		str[i++] = n % 10 + '0';
 		n = n / 10;
 	}
-	printf("\nvaleur de len int %d", i);
-	printf("\n%d valeur de j", j);
-	printf("\n%d valeur de i", i);
-//	j = len_int(k) - 1;
-	i = 0;
-	while (i < len_int(k) - 1 / 2 && k != -2147483648)
-		revstr[i++] = str[--j - 1];
-	while (i < len_int(k) - 1 && k != -2147483648)
-		revstr[i++] = str[--j];
-	revstr[0] = (k < 0 && k != -2147483648) ? '-': revstr[0];
+	printf("taille du mot %d\n", i);
+	printf("valeur de len_int(k) soit longueur du mot %d\n\n", len_int(k));
+	while ((i - len_int(k) <= len_int(k) / 2) && k != -2147483648)
+		revstr[i++ - len_int(k)] = str[--j - 1];
+	printf("valeur de i apres la premiere boucle qui inverse %d\n", (i - len_int(k)));
+	printf("valeur de j apres la premiere boucle qui inverse %d\n\n", (j -1));
+	while ((i - len_int(k) <= len_int(k)) && k != -2147483648)
+		revstr[i++ - len_int(k) - 1] = str[--j];
+	printf("valeur de i apres la seconde boucle qui poursuit %d\n", (i - len_int(k) - 1));
+	printf("valeur de j apres la seconde boucle qui poursuit %d\n\n", (j - 1));
+	revstr[0] = (k < 0 && k != -2147483648) ? '-' : revstr[0];
 	revstr = (k == -2147483648) ? "-2147483648" : revstr;
 	return (revstr);
 }
 
 int	main(void)
 {
-	printf("          \n%s", ft_itoa(21474));
+	printf("          \n%s", ft_itoa(-2174));
 	return (0);
 }
