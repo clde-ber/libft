@@ -1,26 +1,19 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static void ft_swap(char *a, char *b)
-{
-	char *tmp;
-
-	a = tmp;
-	b = a;
-	tmp = b;
-}
-
-static int ft_strlen_int(int n)
+static int len_int(int n)
 {
 	int i;
 
 	i = 0;
-	if (n <= 2147483647 && n >= -2147483648)
+	if (n == -2147483648)
+		return (11);
+	else if (n <= 2147483647 && n > -2147483648)
 	{
 		if (n < 0)
 		{
 			n = -n;
-			i+=1;
+			i += 1;
 		}
 		while (n > 0)
 		{
@@ -42,47 +35,31 @@ char *ft_itoa(int n)
 	i = 0;
 	j = 0;
 	k = n;
-	if (!(str = malloc(sizeof(char) * ft_strlen_int(n) + 1)))
-			return (0);
-	revstr = malloc(sizeof(str));
-	printf("valeur de ft_strlen_int(n) %d", ft_strlen_int(n));
-	if (n <= 2147483647 && n >= -2147483648)
+	if (!(str = malloc(sizeof(char) * len_int(n) + 1)) || !(revstr = malloc(sizeof(str))))
+		return (0);
+//	printf("\n%lu -  taile de la chaine", (sizeof(char) * len_int(n) + 1));
+	n = (n < 0 && k != -2147483648) ? -n : n;
+	while (j++ < len_int(k) && k != -2147483648)
 	{
-		if (n == -2147483648)
-		{
-			revstr = "-2147483648";
-			return (revstr);
-		}
-		else if (n < 0)
-			n = -n;
-		while (j++ < ft_strlen_int(k))
-		{
-			str[i++] = n % 10 + '0';
-			n = n / 10;
-	//		printf("\n%c", 'a');
-		}
-		printf("\n valeur de str au debut %s", str);
-		j = ft_strlen_int(k) - 1;
-		i = 0;
-		while (i < ft_strlen_int(k) / 2)
-			revstr[i++] = str[j--];
-		printf("\n valeur de i %d", i);
-		printf("\n valeur de j %d", j);
-		printf("\n valeur de str %s", str);
-		printf("\n valeur de rev str %s", revstr);
-		while (i < ft_strlen_int(k))
-			revstr[i++] = str[j--];
-		if (k < 0)
-			revstr[0] = '-';
-		printf("\n valeur de rev str %s", revstr);
-		printf("\n\n\n valeur de i a la fin %d", i);
-		revstr[i] = '\0';
+		str[i++] = n % 10 + '0';
+		n = n / 10;
 	}
+	printf("\nvaleur de len int %d", i);
+	printf("\n%d valeur de j", j);
+	printf("\n%d valeur de i", i);
+//	j = len_int(k) - 1;
+	i = 0;
+	while (i < len_int(k) - 1 / 2 && k != -2147483648)
+		revstr[i++] = str[--j - 1];
+	while (i < len_int(k) - 1 && k != -2147483648)
+		revstr[i++] = str[--j];
+	revstr[0] = (k < 0 && k != -2147483648) ? '-': revstr[0];
+	revstr = (k == -2147483648) ? "-2147483648" : revstr;
 	return (revstr);
 }
 
 int	main(void)
 {
-	printf("          \n%s", ft_itoa(-4569));
+	printf("          \n%s", ft_itoa(21474));
 	return (0);
 }
