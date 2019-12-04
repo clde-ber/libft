@@ -12,7 +12,7 @@ static size_t	ft_strlen(char const *s)
 	return (i);
 }
 
-static size_t count_malloc(char const *s, char c)
+static size_t	count_malloc(char const *s, char c)
 {
 	size_t i;
 	size_t count;
@@ -25,16 +25,14 @@ static size_t count_malloc(char const *s, char c)
 			count++;
 		i++;
 	}
-//	printf("Ft_Count - Nombre de mots : %zu\n", count);
 	return (count);
 }
 
-static size_t  cut_s(size_t i, char const *s, char c)
+static size_t	cut_s(size_t i, char const *s, char c)
 {
 	size_t	count;
 
 	count = 0;
-//	printf("Ft_Cut_s - 1 - La chaine recu est = %s\n", s);
 	while (s[i] == c && s[i])
 		i++;
 	while (s[i] != c && s[i])
@@ -42,11 +40,10 @@ static size_t  cut_s(size_t i, char const *s, char c)
 		count++;
 		i++;
 	}
-//	printf("\nFt_Cut_s - 2 - La taille du mot est  = %lu\n", count);
 	return (count);
 }
 
-static char *fill_split(char *str, size_t i, char const *s, char c)
+static char	*fill_split(char *str, size_t i, char const *s, char c)
 {
 	size_t k;
 
@@ -66,13 +63,13 @@ static char *fill_split(char *str, size_t i, char const *s, char c)
 	return (str);
 }
 
-char **ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	size_t i;
-	size_t j;
-	size_t k;
-	size_t l;
-	char **split;
+	size_t	i;
+	size_t	j;
+	size_t	k;
+	size_t	l;
+	char	**split;
 
 	i = 0;
 	j = -1;
@@ -95,18 +92,18 @@ char **ft_split(char const *s, char c)
 	return (split);
 }
 
-int     main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	(void)ac;
-	size_t i;
-	char set = ' ';
+	size_t	i;
+	char	set;
 
+	(void)ac;
+	set = ' ';
 	i = 0;
 	while (i < count_malloc(av[1], set))
 	{
 		printf("\nVALEUR DE RETOUR DU MAIN - %s\n", ft_split(av[1], set)[i]);
 		printf("\n valeur de i %lu\n", i);
-//		printf("\n valeur de count malloc %lu", count_malloc(av[1], set));
 		i++;
 	}
 	free(ft_split(av[1], set));
