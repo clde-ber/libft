@@ -47,7 +47,7 @@ char	*ft_itoa(int n)
 	char	*str;
 	char	*revstr;
 
-	i = 0;
+	i = -1;
 	j = 0;
 	k = n;
 	if (!(str = malloc(sizeof(char) * len_int(n) + 1))
@@ -55,10 +55,14 @@ char	*ft_itoa(int n)
 		return (0);
 	n = (n < 0 && k != -2147483648) ? -n : n;
 	while (j++ < len_int(k) && k != -2147483648)
-	{
-	//	printf("valeur de n : ft_pow \n%d\n", ft_pow(10, i));
-		str[i++] = ((n / ft_pow(10, i)) % 10) + '0';
-	}
+		if (i++ <= len_int(k))
+		{	printf("valeur de i : %d\n", i);
+			printf("valeur de ft_pow : %d\n", ft_pow(10, i));
+			printf("valeur du nombre entre : %d\n", (n / ft_pow(10, i)));
+			str[i] = ((n / ft_pow(10, i)) % 10) + '0';
+			printf("valeur de str[i] : %c\n\n", str[i]);
+		}
+	i += 1;
 	printf("\ntaille du mot %d\n", i);
 	printf("valeur de len_int(k) soit longueur du mot %d\n\n", len_int(k));
 	while ((i - len_int(k) <= len_int(k) / 2) && k != -2147483648)
@@ -67,9 +71,9 @@ char	*ft_itoa(int n)
 	printf("valeur de j apres la premiere boucle qui inverse %d\n\n", (j -1));
 	while ((i - len_int(k) <= len_int(k)) && k != -2147483648)
 		revstr[i++ - len_int(k) - 1] = str[--j];
-	revstr[i - len_int(k) - 1] = '\0';
 	printf("valeur de i apres la seconde boucle qui poursuit %d\n", (i - len_int(k) - 1));
 	printf("valeur de j apres la seconde boucle qui poursuit %d\n\n", (j - 1));
+	revstr[i - len_int(k) - 1] = '\0';
 	revstr[0] = (k < 0 && k != -2147483648) ? '-' : revstr[0];
 	revstr = (k == -2147483648) ? "-2147483648" : revstr;
 	return (revstr);
@@ -77,6 +81,6 @@ char	*ft_itoa(int n)
 
 int	main(void)
 {
-	printf("          \n%s", ft_itoa(-21474));
+	printf("          \n%s", ft_itoa(-2147481));
 	return (0);
 }
