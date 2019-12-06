@@ -12,9 +12,11 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-static int	ft_fill_w_a(unsigned char b, char c)
+static char	ft_fill_w_a(unsigned int a, char b)
 {
-		return ((unsigned char)b);
+	a = 5;
+	b = 'a';
+	return (b);
 }
 
 char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
@@ -23,11 +25,12 @@ char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char *str;
 
 	i = 0;
+	printf("%lu", sizeof(s));
 	if (!(str = malloc(sizeof(s))))
 		return (0);
 	while (i < ft_strlen(s))
 	{
-		str[i] = (*f)((unsigned char)str), s[i]);
+		str[i] = (*f)((unsigned char)str[i], s[i]);
 		i++;
 	}
 	str[i] = '\0';
@@ -36,9 +39,8 @@ char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
 
 int main (int ac, char **av)
 {
-	void(ac);
-	size_t i;
+	(void)ac;
 
-	ft_strmapi((char const)av[1], ft_fill_w_a((unsigned int)av[2], (int)av[1]);
+	printf("\n%s\n", ft_strmapi(av[1], ft_fill_w_a));
 	return (0);
 }
