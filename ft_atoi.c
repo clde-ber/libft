@@ -1,6 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
-
 int	ft_atoi(const char *str)
 {
 	int i;
@@ -8,23 +5,21 @@ int	ft_atoi(const char *str)
 	int res;
 
 	i = 0;
-	j = 1;
+	j = 0;
 	res = 0;
-	if (str[i] == '-')
-		j = -j;
-	i++;
-	while (str[i] >= '0' && str[i] <= '9')
+	while (ft_isalnum(str[i]) && ft_isdigit(str[i]) == 0)
+		i++;
+	if (str[i] == '+' || str[i] == '-')
 	{
-		res = res + (str[i] - '0');
-		res = res * 10;
+		if (str[i] == '-')
+			j = (str[i] == '-') ? -1 : 1;
 		i++;
 	}
-	return ((res * j) / 10);
-}
-
-int	main(int ac, char **av)
-{
-	(void)ac;
-	printf("%d", ft_atoi(av[1]));
-	return (0);
+	while (ft_isdigit(str[i]) && (res >= 0))
+		res = res * 10 + (str[i++] - 48);
+	if (res <= 0 && res != -2147483648)
+		res = 0;
+	else if (j < 0)
+		res = res * j;
+	return (res);
 }
