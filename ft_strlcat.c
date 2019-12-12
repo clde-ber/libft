@@ -1,6 +1,3 @@
-#include <string.h>
-#include <stdio.h>
-
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t i;
@@ -23,11 +20,4 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	}
 	dst[i] = '\0';
 	return (i);
-}
-
-int	main(int ac, char **av)
-{
-	(void)ac;
-	printf("%zu", ft_strlcat(av[2], av[1], 4));
-	return (0);
 }
