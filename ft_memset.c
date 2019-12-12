@@ -1,5 +1,3 @@
-#include <string.h>
-
 void	*ft_memset(void *b, int c, size_t len)
 {
 	size_t i;
@@ -11,11 +9,4 @@ void	*ft_memset(void *b, int c, size_t len)
 		i++;
 	}
 	return ((void *)b);
-}
-
-int	main(int ac, char **av)
-{
-	(void)ac;
-	ft_memset(av[1], 5, 4);
-	return (0);
 }
