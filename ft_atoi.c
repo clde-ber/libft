@@ -7,7 +7,7 @@ int	ft_atoi(const char *str)
 	i = 0;
 	j = 0;
 	res = 0;
-	while (ft_isalnum(str[i]) && ft_isdigit(str[i]) == 0)
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
 		i++;
 	if (str[i] == '+' || str[i] == '-')
 	{
