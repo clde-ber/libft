@@ -1,17 +1,3 @@
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
-
-static size_t	ft_strlen(char const *s)
-{
-	size_t i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
 static size_t	count_malloc(char const *s, char c)
 {
 	size_t i;
@@ -43,7 +29,7 @@ static size_t	cut_s(size_t i, char const *s, char c)
 	return (count);
 }
 
-static char	*fill_split(char *str, size_t i, char const *s, char c)
+static char		*fill_split(char *str, size_t i, char const *s, char c)
 {
 	size_t k;
 
@@ -63,7 +49,7 @@ static char	*fill_split(char *str, size_t i, char const *s, char c)
 	return (str);
 }
 
-char	**ft_split(char const *s, char c)
+char			**ft_split(char const *s, char c)
 {
 	size_t	i;
 	size_t	j;
@@ -90,22 +76,4 @@ char	**ft_split(char const *s, char c)
 	}
 	split[j] = 0;
 	return (split);
-}
-
-int	main(int ac, char **av)
-{
-	size_t	i;
-	char	set;
-
-	(void)ac;
-	set = ' ';
-	i = 0;
-	while (i < count_malloc(av[1], set))
-	{
-		printf("\nVALEUR DE RETOUR DU MAIN - %s\n", ft_split(av[1], set)[i]);
-		printf("\n valeur de i %lu\n", i);
-		i++;
-	}
-	free(ft_split(av[1], set));
-	return (0);
 }
