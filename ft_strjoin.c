@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	size_t	i;
@@ -23,11 +20,4 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	ptr[i + j] = '\0';
 	return (ptr);
-}
-
-int	main(int ac, char **av)
-{
-	(void)ac;
-	printf("%s", ft_strjoin(av[1], av[2]));
-	return (0);
 }
