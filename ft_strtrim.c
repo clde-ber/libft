@@ -1,17 +1,3 @@
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
-
-static size_t	ft_strlen(char const *s)
-{
-	size_t i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
 static size_t	is_in_set(char c, char const *set)
 {
 	size_t i;
@@ -26,7 +12,7 @@ static size_t	is_in_set(char c, char const *set)
 	return (0);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+char			*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	i;
 	size_t	j;
@@ -50,14 +36,4 @@ char	*ft_strtrim(char const *s1, char const *set)
 		j++;
 	}
 	return (str);
-}
-
-int	main(int ac, char **av)
-{
-	char *result;
-
-	(void)ac;
-	result = ft_strtrim(av[1], av[2]);
-	printf("%s", result);
-	return (0);
 }
