@@ -1,6 +1,3 @@
-#include <string.h>
-#include <stdio.h>
-
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t i;
@@ -14,11 +11,4 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 		i++;
 	}
 	return (i);
-}
-
-int	main(int ac, char **av)
-{
-	(void)ac;
-	printf("%zu", ft_strlcpy(av[2], av[1], sizeof(char **)));
-	return (0);
 }
