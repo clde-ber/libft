@@ -1,17 +1,3 @@
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
-
-static int	ft_strlen(char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
 char		*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
@@ -32,11 +18,4 @@ char		*ft_substr(char const *s, unsigned int start, size_t len)
 		i++;
 	}
 	return (ptr);
-}
-
-int		main(int ac, char **av)
-{
-	(void)ac;
-	printf("%s", ft_substr(av[1], 3, 19));
-	return (0);
 }
