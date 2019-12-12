@@ -1,6 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
-
 void	*ft_calloc(size_t count, size_t size)
 {
 	size_t	i;
@@ -15,10 +12,4 @@ void	*ft_calloc(size_t count, size_t size)
 		i++;
 	}
 	return (ptr);
-}
-
-int	main(void)
-{
-	printf("%s", (char *)ft_calloc(5, 0));
-	return (0);
 }
