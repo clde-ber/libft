@@ -1,14 +1,15 @@
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t i;
+	size_t j;
 
-	i = 0;
-	while (src[i])
+	i = ft_strlen(src);
+	j = ft_strlen(dst);
+	if (dstsize > 0)
 	{
-		if (i == dstsize - 1)
-			dst[i] = '\0';
-		dst[i] = src[i];
-		i++;
+		dstsize = (dstsize > i) ? i : dstsize - 1;
+		dst = (char *)ft_memmove(dst, src, dstsize);
+		dst[dstsize] = '\0';
 	}
 	return (i);
 }
