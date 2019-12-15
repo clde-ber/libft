@@ -7,6 +7,8 @@ static int	len_int(int n)
 		return (11);
 	else if (n <= 2147483647 && n > -2147483648)
 	{
+		if (n == 0)
+			return (1);
 		if (n < 0)
 		{
 			n = -n;
@@ -42,25 +44,19 @@ char		*ft_itoa(int n)
 	int		j;
 	int		k;
 	char	*str;
-	char	*revstr;
 
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
 	i = -1;
-	j = 0;
 	k = n;
-	if (!(str = malloc(sizeof(char) * len_int(n) + 1))
-			|| !(revstr = malloc(sizeof(str))))
+	j = len_int(k);
+	if (!(str = malloc(sizeof(char) * len_int(n) + 1)))
 		return (0);
-	n = (n < 0 && k != -2147483648) ? -n : n;
-	while (j++ < len_int(k) && k != -2147483648)
+	n = ((int)n < 0 && k != -2147483648) ? -n : n;
+	while (j-- > 0 && k != -2147483648)
 		if (i++ <= len_int(k))
-			str[i] = ((n / ft_pow(10, i)) % 10) + '0';
-	i += 1;
-	while ((i - len_int(k) <= len_int(k) / 2) && k != -2147483648)
-		revstr[i++ - len_int(k)] = str[--j - 1];
-	while ((i - len_int(k) <= len_int(k)) && k != -2147483648)
-		revstr[i++ - len_int(k) - 1] = str[--j];
-	revstr[i - len_int(k) - 1] = '\0';
-	revstr[0] = (k < 0 && k != -2147483648) ? '-' : revstr[0];
-	revstr = (k == -2147483648) ? "-2147483648" : revstr;
-	return (revstr);
+			str[j] = ((n / ft_pow(10, i)) % 10) + '0';
+	str[len_int(k)] = '\0';
+	str[0] = (k < 0 && k != -2147483648) ? '-' : str[0];
+	return (str);
 }
