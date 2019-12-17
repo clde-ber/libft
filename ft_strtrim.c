@@ -1,4 +1,4 @@
-static size_t	is_in_set(char c, char const *set)
+static size_t	is_in_set(char const c, char const *set)
 {
 	size_t i;
 
@@ -20,20 +20,26 @@ char			*ft_strtrim(char const *s1, char const *set)
 
 	i = 0;
 	j = 0;
-	str = malloc(sizeof(char) * (ft_strlen(s1)));
-	while (i < ft_strlen(s1) && is_in_set(s1[i], set))
-		i++;
-	while (i < ft_strlen(s1) && is_in_set(s1[i], set) == 0)
+	if (s1 == NULL || set == NULL)
+		return (0);
+	if (ft_strlen(s1) == 0 && s1[0] == '\0')
 	{
-		str[j] = s1[i];
-		i++;
-		j++;
+		if (!(str = malloc(sizeof(char))))
+			return (0);
+		str[0] = s1[0];
+		return (str);
 	}
-	while (i > 0 && is_in_set(s1[i], set))
+	while (i < ft_strlen(s1))
 	{
-		str[j] = '\0';
+		if (is_in_set(s1[i], set) == 0)
+			j++;
 		i++;
-		j++;
 	}
+	if (!(str = malloc(sizeof(char) * (j + 1))))
+		return (0);
+	str[j] = '\0';
+	while (--i > 0)
+		if (is_in_set(s1[i], set) == 0)
+			str[--j] = (char)s1[i];
 	return (str);
 }
