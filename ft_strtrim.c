@@ -16,30 +16,27 @@ char			*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	i;
 	size_t	j;
+	size_t	k;
+	size_t	len;
 	char	*str;
 
 	i = 0;
-	j = 0;
+	k = 0;
+	len = ft_strlen(s1);
+	j = len;
 	if (s1 == NULL || set == NULL)
 		return (0);
-	if (ft_strlen(s1) == 0 && s1[0] == '\0')
-	{
-		if (!(str = malloc(sizeof(char))))
-			return (0);
-		str[0] = s1[0];
-		return (str);
-	}
-	while (i < ft_strlen(s1))
-	{
-		if (is_in_set(s1[i], set) == 0)
-			j++;
+	while (i < j && is_in_set(s1[i], set))
 		i++;
-	}
-	if (!(str = malloc(sizeof(char) * (j + 1))))
+	while (j >= 0 && is_in_set(s1[--j], set))
+		k++;
+	if (!(str = (k == i && k != 0 && i != 0) ? malloc(sizeof(char))
+				: malloc(sizeof(char) * (len - i - k + 1))))
 		return (0);
-	str[j] = '\0';
-	while (--i > 0)
-		if (is_in_set(s1[i], set) == 0)
-			str[--j] = (char)s1[i];
+	j = len - k;
+	k = len - i - k;
+	str[k] = '\0';
+	while (j-- > i)
+		str[--k] = (char)s1[j];
 	return (str);
 }
