@@ -10,13 +10,11 @@ int		ft_strlen(char *str)
 	return (i);
 }
 
-int		ft_strlen_nbr(int nbr, char *base)
+int		ft_strlen_nbr(unsigned int nbr, char *base)
 {
 	int i;
 
 	i = 0;
-	if (nbr < 0)
-		nbr = nbr * -1;
 	while (nbr > 0)
 	{
 		nbr = nbr / ft_strlen(base);
@@ -25,7 +23,7 @@ int		ft_strlen_nbr(int nbr, char *base)
 	return (i);
 }
 
-void	write_number(char *base, char *tab, int nbr_len)
+void	write_number(char *base, char *tab, unsigned int nbr_len)
 {
 	int i;
 	int pos;
@@ -50,7 +48,7 @@ int		check_base(char *base)
 	while (base[i])
 	{
 		if (!((base[i] >= 'a' && base[i] <= 'z') || (base[i] >= 'A'
-						&& base[i] <= 'Z') || (base[i] >= '0' && base[i] <= '9')))
+		&& base[i] <= 'Z') || (base[i] >= '0' && base[i] <= '9')))
 			return (0);
 		j = i + 1;
 		while (base[j])
@@ -66,26 +64,27 @@ int		check_base(char *base)
 
 void	ft_putnbr_base(int nbr, char *base)
 {
-	int		i;
-	int		nbr_len;
-	char	tab[ft_strlen_nbr(nbr, base)];
+	unsigned int		i;
+	unsigned int		nb;
+	unsigned int		nbr_len;
+	char				tab[ft_strlen_nbr(nbr, base)];
 
 	i = 0;
-	nbr_len = ft_strlen_nbr(nbr, base);
+	nbr_len = ft_strlen_nbr((unsigned int)nbr, base);
 	if (check_base(base))
 	{
 		if (nbr == 0)
 			write(1, &base[i], 1);
-		else if (nbr < 0)
+		if (nbr < 0)
 		{
 			write(1, "-", 1);
-		//	if (nbr == -2147483648)
-			nbr = nbr * -1;
+			nb = nbr * -1;
 		}
-		while (nbr > 0)
+		nbr = nb;
+		while (nb > 0)
 		{
-			tab[i] = nbr % ft_strlen(base) + '0';
-			nbr = nbr / ft_strlen(base);
+			tab[i] = nb % ft_strlen(base) + '0';
+			nb = nb / ft_strlen(base);
 			i++;
 		}
 		write_number(base, tab, nbr_len);
@@ -94,11 +93,9 @@ void	ft_putnbr_base(int nbr, char *base)
 
 int main()
 {
-	int nbr;
-	char *base;
+		int nbr;
+			char *base;
 
-	nbr = -2147483648;
-	base = "01";
-	ft_putnbr_base(nbr, base);
-	return (0);
+				nbr = 10111;
+					base = "01"
 }
