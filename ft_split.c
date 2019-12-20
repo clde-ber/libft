@@ -11,7 +11,7 @@ static size_t	count_malloc(char const *s, char c)
 	count = 0;
 	while (s[i])
 	{
-		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
+		if (s[i] != c && (s[i + 1] == c || s[i] == '\0'))
 			count++;
 		i++;
 	}
@@ -74,7 +74,7 @@ char			**ft_split(char const *s, char c)
 		while (s[i++])
 			if (s[i - 1] != c && (s[i] == c || s[i] == '\0'))
 				break ;
-//		i = (s[i]) ? i + 1 : i;
+		i = (s[i]) ? i + 1 : i;
 		split[j] = fill_split(split[j], l, s, c);
 		l = i;
 	}
