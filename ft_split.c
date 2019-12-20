@@ -8,7 +8,7 @@ static size_t	count_malloc(char const *s, char c)
 	size_t count;
 
 	i = 0;
-	count = 0;
+	count = 1;
 	while (s[i])
 	{
 		if (s[i] != c && (s[i + 1] == c || s[i] == '\0'))
