@@ -74,7 +74,7 @@ char			**ft_split(char const *s, char c)
 		while (s[i++])
 			if (s[i - 1] != c && (s[i] == c || s[i] == '\0'))
 				break ;
-		i = (s[i]) ? i + 1 : i;
+//		i = (s[i]) ? i + 1 : i;
 		split[j] = fill_split(split[j], l, s, c);
 		l = i;
 	}
