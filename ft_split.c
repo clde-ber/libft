@@ -1,10 +1,14 @@
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 static size_t	count_malloc(char const *s, char c)
 {
 	size_t i;
 	size_t count;
 
 	i = 0;
-	count = 1;
+	count = 0;
 	while (s[i])
 	{
 		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
@@ -68,12 +72,27 @@ char			**ft_split(char const *s, char c)
 		if (!(split[j] = malloc(sizeof(char) * k + 1)))
 			return (0);
 		while (s[i++])
-			if (s[i] != c && (s[i + 1] == c || s[i] == '\0'))
+			if (s[i - 1] != c && (s[i] == c || s[i] == '\0'))
 				break ;
-		i = (s[i]) ? i + 1 : i;
+//		i = (s[i]) ? i + 1 : i;
 		split[j] = fill_split(split[j], l, s, c);
 		l = i;
 	}
 	split[j] = 0;
 	return (split);
+}
+
+int main()
+{
+	int i;
+	char const *s = "M-A-K-E-L-I-B-F-T-G-R-E-A-T-A-G-A-I-N-!-";
+	char c = '-';
+
+	i = 0;
+	while (i < 22)
+	{
+		printf("%s\n", ft_split(s, c)[i]);
+		i++;
+	}
+	return (0);
 }
