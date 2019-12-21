@@ -1,7 +1,3 @@
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-
 static size_t	len_wd(char const *str, int c)
 {
 	size_t i;
@@ -10,25 +6,10 @@ static size_t	len_wd(char const *str, int c)
 	while (str[i])
 	{
 		if (str[i] == c)
-			break;
+			break ;
 		i++;
 	}
 	return (i);
-}
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
-{
-	size_t i;
-
-	if (!dst && !src)
-		return (NULL);
-	i = 0;
-	while (i < n)
-	{
-		((char *)dst)[i] = ((char *)src)[i];
-		i++;
-	}
-	return ((void *)dst);
 }
 
 static size_t	count_malloc(char const *s, char c)
@@ -51,13 +32,12 @@ char			**ft_split(char const *s, char c)
 {
 	size_t	i;
 	size_t	j;
-	char **res;
-	size_t str_nb;
+	char	**res;
+	size_t	str_nb;
 
 	i = 0;
 	j = 0;
-	str_nb = count_malloc(s,c);
-	printf("str_nb %zu\n", str_nb);
+	str_nb = count_malloc(s, c);
 	if (!(res = malloc(sizeof(char *) * str_nb)))
 		return (0);
 	while (s[i] && j < str_nb)
@@ -75,21 +55,4 @@ char			**ft_split(char const *s, char c)
 	}
 	res[str_nb] = 0;
 	return (res);
-}
-
-int main()
-{
-	int i;
-	char const *s = "M-AAAA-K-E----L-I-B-FFFF-T-G-R-E-A-T-A-G-A-I-N---";
-	char c = '-';
-
-	i = 0;
-	while (i < 21)
-	{
-		printf("%s\n", ft_split(s, c)[i]);
-		i++;
-	}
-//	printf("%s\n", ft_split(s, c)[19]);
-
-	return (0);
 }
