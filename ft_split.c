@@ -40,9 +40,9 @@ char			**ft_split(char const *s, char c)
 	str_nb = count_malloc(s, c);
 	if (!(res = malloc(sizeof(char *) * (str_nb + 1))))
 		return (0);
-	while (s[i] && j < str_nb)
+	while (s[i++])
 	{
-		if (s[i] != c)
+		if (s[i] != c && j < str_nb)
 		{
 			if (!(res[j] = malloc(sizeof(char) * (len_wd(&s[i], c) + 1))))
 				return (0);
@@ -51,7 +51,6 @@ char			**ft_split(char const *s, char c)
 			j++;
 			i += len_wd(&s[i], c);
 		}
-		i++;
 	}
 	res[str_nb] = 0;
 	return (res);
