@@ -38,7 +38,7 @@ char			**ft_split(char const *s, char c)
 	i = 0;
 	j = 0;
 	str_nb = count_malloc(s, c);
-	if (!(res = malloc(sizeof(char *) * str_nb)))
+	if (!(res = malloc(sizeof(char *) * (str_nb + 1))))
 		return (0);
 	while (s[i] && j < str_nb)
 	{
