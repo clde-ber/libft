@@ -35,7 +35,7 @@ char			**ft_split(char const *s, char c)
 	char	**res;
 	size_t	str_nb;
 
-	i = 0;
+	i = -1;
 	j = 0;
 	str_nb = count_malloc(s, c);
 	if (!(res = malloc(sizeof(char *) * (str_nb + 1))))
