@@ -22,9 +22,9 @@ char			*ft_strtrim(char const *s1, char const *set)
 
 	i = 0;
 	k = 0;
-	len = ft_strlen(s1);
+	len = (!s1 || !set) ? 0 : ft_strlen(s1);
 	j = len;
-	if (s1 == NULL || set == NULL)
+	if (s1 == NULL || set == NULL || !s1 || !set)
 		return (0);
 	while (i < j && is_in_set(s1[i], set))
 		i++;
