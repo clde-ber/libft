@@ -50,7 +50,7 @@ char		*ft_itoa(int n)
 	i = -1;
 	k = n;
 	j = len_int(k);
-	if (!(str = malloc(sizeof(char) * len_int(n) + 1)))
+	if (!(str = malloc(sizeof(char) * (len_int(n) + 1))))
 		return (0);
 	n = ((int)n < 0 && k != -2147483648) ? -n : n;
 	while (j-- > 0 && k != -2147483648)
