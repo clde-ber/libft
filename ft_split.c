@@ -37,12 +37,13 @@ char			**ft_split(char const *s, char c)
 
 	i = -1;
 	j = 0;
-	if (!s || !c)
+	if (!s)
 		return (0);
-	str_nb = count_malloc(s, c);
+	str_nb = (c == 0) ? 1 : count_malloc(s, c);
 	if (!(res = malloc(sizeof(char *) * (str_nb + 1))))
 		return (0);
-	while (s[i++ + 1])
+	res[0] = (c == 0) ? ft_strdup(s) : res[0];
+	while ((i++ + 1) < ft_strlen(s))
 		if (s[i] != c && j < str_nb)
 		{
 			if (!(res[j] = malloc(sizeof(char) * (len_wd(&s[i], c) + 1))))
