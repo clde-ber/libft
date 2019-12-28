@@ -20,12 +20,15 @@ char			*ft_strtrim(char const *s1, char const *set)
 	i = 0;
 	if (!s1 || !set)
 		return (0);
-	len = ft_strlen(s1) - 1;
+	len = ft_strlen(s1);
+	if (len == 0)
+		return (ft_strdup(""));
+	len--;
 	while (s1[i] && is_in_set(s1[i], set))
 		i++;
 	while (len > i && s1[len] && is_in_set(s1[len], set))
 		len--;
 	if (len == i)
 		return (ft_strdup(""));
-	return (ft_substr(s1, i, len - i));
+	return (ft_substr(s1, i, len - i + 1));
 }
