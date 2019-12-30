@@ -28,7 +28,7 @@ static size_t	count_malloc(char const *s, char c)
 	return (count);
 }
 
-void			*ft_free(char **res, int j)
+static void		*ft_free(char **res, int j)
 {
 	int	i;
 
@@ -57,16 +57,16 @@ char			**ft_split(char const *s, char c)
 	if (!(res = malloc(sizeof(char *) * (str_nb + 1))))
 		return (0);
 	res[0] = (c == 0) ? ft_strdup(s) : res[0];
-    res[str_nb] = ft_strdup("(NULL)");
 	while ((i++ + 1) < ft_strlen(s))
-        if (s[i] != c && j < str_nb)
+		if (s[i] != c && j < str_nb)
 		{
-            if (!(res[j] = malloc(sizeof(char) * (len_wd(&s[i], c) + 1))))
+			if (!(res[j] = malloc(sizeof(char) * (len_wd(&s[i], c) + 1))))
 				return (ft_free(res, j));
-			res[j] = ft_memmove(res[j], &s[i], len_wd(&s[i], c) + 1);
+			res[j] = ft_memcpy(res[j], &s[i], len_wd(&s[i], c) + 1);
 			res[j][len_wd(&s[i], c)] = '\0';
 			j++;
-            i += len_wd(&s[i], c);
+			i += len_wd(&s[i], c);
 		}
+	res[str_nb] = 0;
 	return (res);
 }
