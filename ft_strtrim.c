@@ -26,9 +26,9 @@ char			*ft_strtrim(char const *s1, char const *set)
 	len--;
 	while (s1[i] && is_in_set(s1[i], set))
 		i++;
+	if (len + 1 == i)
+		return (ft_strdup(""));
 	while (len > i && s1[len] && is_in_set(s1[len], set))
 		len--;
-	if (len == i)
-		return (ft_strdup(""));
 	return (ft_substr(s1, i, len - i + 1));
 }
