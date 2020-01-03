@@ -44,17 +44,6 @@ static void		*ft_free(char **res, int j)
 	return (NULL);
 }
 
-static int		check_empty(char const *s, char **res, char c)
-{
-	if (s[0] == '\0' || c == '\0')
-	{
-		res[0] = (c == '\0') ? ft_strdup(s) : NULL;
-		res[1] = NULL;
-		return (1);
-	}
-	return (0);
-}
-
 char			**ft_split(char const *s, char c)
 {
 	size_t	i;
@@ -81,5 +70,5 @@ char			**ft_split(char const *s, char c)
 		i++;
 	}
 	res[count_malloc(s, c)] = 0;
-	return (check_empty(s, res, c)) ? res : res;
+	return (res);
 }
