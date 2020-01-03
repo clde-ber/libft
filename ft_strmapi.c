@@ -5,7 +5,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char			*str;
 
 	if (!s || !f)
-		return (0);
+		return (ft_strdup(""));
 	i = 0;
 	size = ft_strlen(s);
 	if (!(str = malloc(sizeof(char) * (size + 1))))
