@@ -4,11 +4,5 @@ void	ft_putstr_fd(char *s, int fd)
 
 	i = 0;
 	if (s != NULL)
-	{
-		while (s[i])
-		{
-			ft_putchar_fd(s[i], fd);
-			i++;
-		}
-	}
+		write(1, s, ft_strlen(s));
 }
